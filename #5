@@ -1,4 +1,31 @@
-# Q1----
+# Assignment #1
+
+#Q1
+x=[i for i in range (1999, 3201) if (i%7 ==0) and (i/5 !=0)]
+print(x)
+
+#Q2
+
+f=str(input('Enter First Name'))
+s=str(input('Enter Last Name'))
+full_name = f+' '+s
+print(full_name)
+full_name[::-1]
+
+# Q3
+
+def vol(d):
+    v=4/3
+    r=d/2
+    print('Volume of Sphere is :', (4/3)*(22/7)*(r**3))
+vol(12)
+
+
+
+# Assignment 2----
+
+
+
 
 def compute():
     return 5/0
