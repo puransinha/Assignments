@@ -45,3 +45,45 @@ objects=["Baseball","Cricket"]
 query = [(sub+' '+vrb+' '+obj+".") for sub in subjects for vrb in verbs for obj in objects]
 for qry in query:
     print(qry)
+
+
+#### Pandas Assignments ************************
+
+import pandas as pd
+import numpy as np
+df = pd.DataFrame({'From_To': ['LoNDon_paris', 'MAdrid_miLAN','londON_StockhOlm','Budapest_PaRis', 'Brussels_londOn'],
+                   'FlightNumber': [10045, np.nan, 10065, np.nan, 10085],
+                   'RecentDelays': [[23, 47], [], [24, 43, 87], [13], [67, 32]],
+                   'Airline': ['KLM(!)', '<Air France> (12)', '(British Airways. )',
+                               '12. Air France', '"Swiss Air"']})
+
+df.head()
+
+###Ans-1
+for i in range(1, df['FlightNumber'].count() + 1):
+      if pd.isnull(df.loc[i,'FlightNumber']):
+          df.loc[i, 'FlightNumber'] = df.loc[i-1, 'FlightNumber'] + 10
+df.head()
+#************************
+#Q-2
+
+df[['From', 'To']]=df.From_To.str.split('_',expand=True)
+df.head()
+#********************
+
+#Q-4
+df.drop('From_To', axis=1, inplace=True)
+df.head()
+#*******************
+
+#Q-3
+df['To'] = df['To'].str.capitalize()
+df.head()
+#****************
+
+#Q-5
+
+d2 = (pd.DataFrame(df['RecentDelays'].values.tolist(), index=df.index).rename(columns = lambda x: 'Delay{}'.format(x+1)))
+d3=df.join(d2)
+d3.head()
+#********************
